@@ -1,0 +1,82 @@
+﻿@inject IViewRenderService VwRender
+@inject IAppConfig InjApp
+
+@model Bike
+
+@{
+    ViewData["Title"] = Model.Name;
+    var LnkHost = VwRender.HostURL;
+}
+
+<div class="container mt-5 mb-md-4 py-5">
+    <nav class="mb-3 pt-md-3" aria-label="Breadcrumb">
+        <ol class="breadcrumb breadcrumb-light">
+            <li class="breadcrumb-item"><a asp-area="" asp-controller="home" asp-action="index">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Bikes</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Category.Name</li>
+        </ol>
+    </nav>
+    <div class="d-sm-flex align-items-end align-items-md-center justify-content-between position-relative mb-4" style="z-index: 1025;">
+        <div class="me-3">
+            <h1 class="h2 text-light mb-md-0"> @Model.Name</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <img class="img-featured" src="~/@string.Format("uploads/{0}", Model.Photo)" alt="Image">
+        </div>
+        <div class="col-md-7 pt-5 pt-md-0" style="margin-top: -6rem;">
+            <div class="sticky-top pt-5">
+                <form method="POST" class="d-none d-md-block pt-5" asp-area="" asp-controller="products" asp-action="rentals">
+                    <div class="card card-light card-body mb-4">
+                        <div class="d-flex align-items-center text-light pb-4 mb-2">
+                            <div class="text-nowrap border-end border-light pe-3 me-3">
+                                <i class="fi-dashboard fs-lg opacity-70 me-2"></i>
+                                <span class="align-middle">Hourly</span>
+                            </div>
+                            @Model.Hourly_Rate.ToDouble().ToString("#, ##0.00")
+                           <input type="hidden"  name="Bike_ID" value="@Model.ID"/>
+                        </div>
+                        <h2 class="h4 text-light mb-4"><i class="fi-car text-primary fs-5 mt-n1 me-2"></i>Rental Form</h2>
+                        <div class="row pb-2">
+                            <div class="col-sm-8 mb-3">
+                                <label class="form-label text-light" for="Customer">Customer <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-light mb-3" type="text" id="Customer" name="Customer" value="" placeholder="Your Name" maxlength="80" required="">
+                            </div>
+                            <div class="col-sm-4 mb-3">
+                                <label class="form-label text-light" for="Mobile">Mobile <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-light mb-3" type="text" id="Custome_Mobile" name="Customer_Mobile" value="" placeholder="9123456789" maxlength="10" required="">
+                            </div>
+                            <div class="col-sm-12 mb-3">
+                                <label class="form-label text-light" for="Address">Address <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-light mb-3" type="text" id="Custome_Address" name="Customer_Address" value="" placeholder="# Block, Street, Barangay, City" maxlength="300" required="">
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-3">
+                                <label class="form-label text-light" for="Hourly">No of Hours<span class="text-danger">*</span></label>
+                                <select class="form-select form-select-light mb-3" id="Hourly_Usage" name="Hourly_Usage" required="">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label text-light" for="Date_Start">Rental Date <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-light" type="date" id="Rental_Date" name="Rental_Date" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" placeholder="yyyy-MM-dd" required="">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label text-light" for="Date_Start">Rental Start <span class="text-danger">*</span></label>
+                                <input class="form-control form-control-light" type="time" id="Rental_Start" name="Rental_Start" min="@DateTime.Now.ToString("hh:mm tt")" value="@DateTime.Now.ToString("hh:mm tt")" placeholder="00:00 AM/PM" required="">
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <button class="btn btn-primary btn-lg" type="submit">
+                                <i class="fi-chat-left me-2"></i>Rent Now
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,2 +1,2 @@
-# cs-bike-rentals
-Bike Rentals
+# urapz-psrm-journal
+PSRM Journal

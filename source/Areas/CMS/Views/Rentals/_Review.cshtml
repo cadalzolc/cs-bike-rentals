@@ -1,0 +1,119 @@
+﻿@inject IViewRenderService InjView
+
+@model Rental
+
+@{
+    ViewData["Title"] = Model.Bike + "Rentals";
+    var LnkHost = InjView.HostURL;
+}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="header">
+                <div class="header-body">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="header-pretitle">Bike Rentals</h6>
+                            <h1 class="header-title">@Model.Bike - [ Review ]</h1>
+                        </div>
+                        <div class="col-auto" style="font-size: 1.5rem; color: #ff5722; font-weight: 700;">@((Model.Hourly_Rate * Model.Hourly_Usage).ToString("P #, ##0.00"))</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pb-6">
+    <div class="container-fluid small-box" style="font-size: 0.8rem;">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col col-lg-3">
+                                <div class="form-group">
+                                    <label><strong>No. #</strong></label>
+                                    <input type="text" class="form-control" required="" value="@Model.Rental_ID.ToString("BRN00000")" readonly="">
+                                </div>
+                            </div>
+                            <div class="col col-lg-3">
+                                <div class="form-group">
+                                    <label><strong>Date</strong></label>
+                                    <input type="text" class="form-control" required="" value="@Model.Rental_Date.ToDate().ToString("MMM-dd-yyyy").ToUpper()" readonly="">
+                                </div>
+                            </div>
+                            <div class="col col-lg-3">
+                                <div class="form-group">
+                                    <label><strong>Rate</strong></label>
+                                    <input type="text" class="form-control" required="" value="@Model.Hourly_Rate" readonly="">
+                                </div>
+                            </div>
+                            <div class="col col-lg-3">
+                                <div class="form-group">
+                                    <label><strong>Hour</strong></label>
+                                    <input type="text" class="form-control" required="" value="@Model.Hourly_Usage" readonly="">
+                                </div>
+                            </div>
+                            <div class="col col-lg-4">
+                                <div class="form-group">
+                                    <label><strong>Customer</strong></label>
+                                    <input type="text" class="form-control" required="" value="@Model.Customer" readonly="">
+                                </div>
+                            </div>
+                            <div class="col col-lg-8">
+                                <div class="form-group">
+                                    <label><strong>Address</strong></label>
+                                    <input type="text" class="form-control" required="" value="@Model.Customer_Address" readonly="">
+                                </div>
+                            </div>
+                            <div class="col col-lg-4">
+                                <div class="form-group">
+                                    <label><strong>Mobile</strong></label>
+                                    <input type="text" class="form-control" required="" value="@Model.Customer_Mobile" readonly="">
+                                </div>
+                            </div>
+                            <div class="col col-lg-4">
+                                <div class="form-group">
+                                    <label><strong>Bike</strong></label>
+                                    <input type="text" class="form-control" required="" value="@Model.Bike" readonly="">
+                                </div>
+                            </div>
+                            <div class="col col-lg-4">
+                                <div class="form-group">
+                                    <label><strong>Category</strong></label>
+                                    <input type="text" class="form-control" required="" value="@Model.Category" readonly="">
+                                </div>
+                            </div>
+                            <div class="col col-lg-12" style="padding-top: 10px;">
+                                <div class="row">
+                                    <div class="col">Total Amount: <strong>@((Model.Hourly_Rate * Model.Hourly_Usage).ToString("P #, ##0.00"))</strong></div>
+                                    <div class="col-auto">
+                                        <button type="button" class="btn btn-sm btn-primary"
+                                                data-url="@Url.Action("pushtolease", "rentals", new { Area = "cms", key = string.Format("{0}|{1}|{2}", "A", Model.Rental_ID, Model.Bike_ID).ToEncode() })"
+                                                data-modalia="#MdlForm"
+                                                data-loader="#FrmAptInv"
+                                                onclick="return PopupDialog(this);">
+                                            Accept
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-danger"
+                                                data-url="@Url.Action("pushtolease", "rentals", new { Area = "cms", key = string.Format("{0}|{1}|{2}", "D", Model.Rental_ID, Model.Bike_ID).ToEncode() })"
+                                                data-modalia="#MdlForm"
+                                                data-loader="#FrmAptInv"
+                                                onclick="return PopupDialog(this);">
+                                            Denied
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="FrmAptInv" class="overlay">
+                        <span class="spinner-border text-success" role="status"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

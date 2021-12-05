@@ -1,0 +1,27 @@
+﻿@inject ICurrentUserService InjUser
+
+@{ 
+    var CurUser = InjUser.GetInfo();
+}
+
+<nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
+    <div class="container-fluid">
+        <div class="form-inline mr-4 d-none d-md-flex">
+           <div class="text-bold text-md">Role: <span class="text-theme-1">@CurUser.Role</span></div>
+        </div>
+        <div class="navbar-user">
+            <div class="dropdown mr-4 d-none d-md-flex">Hi, @CurUser.Name</div>
+            <div class="dropdown">
+                <a href="#" class="avatar avatar-sm avatar-online dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="~/uploads/logo.jpg" alt="@CurUser.Name" class="avatar-img rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <hr class="dropdown-divider">
+                    <form asp-action="logout" asp-controller="account" asp-area="cms" id="WebLogout" method="post">
+                        <a href="javascript:document.getElementById('WebLogout').submit()" title="Logout" class="dropdown-item">Logout</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

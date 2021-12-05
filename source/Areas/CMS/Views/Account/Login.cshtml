@@ -1,0 +1,58 @@
+﻿@inject IViewRenderService VwRender
+
+@model User_Account
+
+@{
+    Layout = "~/Areas/CMS/Views/Shared/_LayoutCover.cshtml";
+    ViewData["Title"] = "Login";
+
+    var LnkHost = VwRender.HostURL;
+}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-5 col-lg-6 col-xl-4 align-self-center px-lg-6 my-5 small-box">
+            <p class="text-muted text-center mb-5">Account Login</p>
+            <form id="FrmVstr" class="form-login" method="post"
+                  asp-action="aogin" asp-controller="account" asp-area="cms"
+                  data-return="@Model.ReturnURL"
+                  data-button-confirm="#BtnLgn"
+                  data-loader="#FrmProcs"
+                  onSubmit="return FormReloader(this);">
+                <div class="form-group">
+                    <div class="input-group input-group-merge">
+                        <input name="Username" type="text" class="form-control form-control-appended" placeholder="Username" required="" tabindex="1">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i data-feather="user" style=" height: 13px;"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-merge">
+                        <input id="password" name="password" type="password" class="form-control form-control-appended" placeholder="Password" required="" tabindex="2" data-password="true">
+                        <div class="input-group-append">
+                            <span class="input-group-text show-password" data-show-password="false">
+                                <i data-feather="eye" style=" height: 13px;"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <button id="BtnLgn" type="submit" class="btn btn-lg btn-block btn-success btn-control mb-2" tabindex="3">
+                    Sign in
+                </button>
+            </form>
+            <div class="d-block text-center mt-0 mb-2">
+                <a asp-action="index" asp-controller="home" asp-area="" class="btn btn-success btn-block btn-control" style="font-size: 13px;" title="Homepage">Homepage</a>
+            </div>
+            <div id="FrmProcs" class="overlay">
+                <span class="spinner-border text-success" role="status"></span>
+            </div>
+        </div>
+        <div class="col-12 col-md-7 col-lg-6 col-xl-8 d-none d-lg-block">
+            <div class="bg-cover h-100 min-vh-100 mt-n1 mr-n3" style="background-image: url('@string.Format("{0}assets/gallery/{1}", LnkHost, "auth.jpg")');"></div>
+        </div>
+    </div>
+</div>

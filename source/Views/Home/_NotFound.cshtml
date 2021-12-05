@@ -1,0 +1,35 @@
+﻿@inject IViewRenderService VwRender
+@inject ICurrentUserService InjUser
+
+@{
+    ViewData["Title"] = "404 - Page Not Found";
+    var LnkHost = VwRender.HostURL;
+    var CurUser = InjUser.GetInfo();
+}
+
+<section class="pt-6 bg-trans" style="z-index: 100;">
+    <div class="container bg-white">
+        <div class="row justify-content-center bg-white" style="border-top: 2px solid #a0cb23; padding-top: 52px;">
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6 bg-white">
+                <img src="~/gallery/logo-text.png" class="img-fluid" style="width: 85%; margin: 0 auto; display: block;" />
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6 bg-white">
+                <h1 class="text-center mb-0" style="font-size: 9rem;">404</h1>
+                <h1 class="heading-m text-capitalize" style="font-size: 1.2rem;">We could not find the page you are looking for</h1>
+                <p class="text-muted">The link you are trying to access is probably brokern, or the page has been removed</p>
+                @if (CurUser.Name == "")
+                {
+                    <a class="btn btn-primary btn-lg text-uppercase" asp-area="" asp-controller="Home" asp-action="Index">Back to Home</a>
+                }
+                else
+                {
+                    <a class="btn btn-primary btn-lg text-uppercase" asp-area="cms" asp-controller="Home" asp-action="Index">Back to Dashboard</a>
+
+                }
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+</section>

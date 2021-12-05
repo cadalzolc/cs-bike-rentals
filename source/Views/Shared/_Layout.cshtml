@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Lambert C. Cadalzo">
+    @RenderSection("Metas", required: false)
+    <link rel="icon" href="~/favicon.ico">
+    <link rel="stylesheet" href="~/assets/css/simplebar.min.css">
+    <link rel="stylesheet" href="~/assets/css/tiny-slider.css">
+    <link rel="stylesheet" href="~/assets/css/theme.min.css">
+    <link rel="stylesheet" href="~/assets/css/fe.min.css">
+    <title>@ViewData["Title"]</title>
+    @RenderSection("Styles", required: false)
+</head>
+<body class="bg-dark">
+    <main class="page-wrapper">
+        <partial name="_LayoutExtra.cshtml" />
+        <partial name="_LayoutHeader.cshtml" />
+        @RenderBody()
+    </main>
+    <partial name="_LayoutFooter.cshtml" />
+    @RenderSection("Overlay", required: false)
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/simplebar.min.js"></script>
+    <script src="~/assets/js/smooth-scroll.polyfills.min.js"></script>
+    <script src="~/assets/js/tiny-slider.js"></script>
+    <script src="~/assets/js/jarallax.min.js"></script>
+    <script src="~/assets/js/jarallax-element.min.js"></script>
+    <script src="~/assets/js/fe.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

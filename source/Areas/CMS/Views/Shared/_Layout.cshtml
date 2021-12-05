@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <meta name="url" content="https://cadalzolc.com">
+    <meta name="author" content="Lambert C. Cadalzo">
+    @RenderSection("Metas", required: false)
+    <link rel="icon" href="~/favicon.ico">
+    <link rel="stylesheet" href="~/assets/css/be.min.css">
+    <link rel="stylesheet" href="~/assets/css/be.theme.min.css">
+    <link rel="stylesheet" href="~/assets/css/prd.min.css">
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    @RenderSection("Styles", required: false)
+</head>
+<body style="display: block;">
+    <partial name="_LayoutExtra" />
+    <partial name="_LayoutSidebar" />
+    <div class="main-content">
+        <partial name="_LayoutHeader" />
+        @RenderBody()
+        <partial name="_LayoutFooter" />
+    </div>
+    @RenderSection("Overlay", required: false)
+    <script src="/assets/js/be.min.js"></script>
+    <script>
+        feather.replace();
+    </script>
+    <script src="~/assets/js/be.lib.min.js"></script>
+    <script src="~/assets/js/prd.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

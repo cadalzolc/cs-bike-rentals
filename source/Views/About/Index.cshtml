@@ -1,0 +1,10 @@
+﻿@inject IViewRenderService VwRender
+@inject IAppConfig InjApp
+
+@model Pages
+
+@{
+    ViewData["Title"] = "About Us - " + InjApp.Name;
+    var LnkHost = VwRender.HostURL;
+
+}

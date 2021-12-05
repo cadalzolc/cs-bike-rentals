@@ -1,0 +1,29 @@
+﻿@model Rental_Response
+
+@{
+    ViewData["Title"] = "Rentals - Message";
+}
+
+<div class="container mt-5 mb-md-4 py-5">
+    <nav class="mb-3 pt-md-3" aria-label="Breadcrumb">
+        <ol class="breadcrumb breadcrumb-light">
+            <li class="breadcrumb-item"><a asp-area="" asp-controller="home" asp-action="index">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Rentals</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Message</li>
+        </ol>
+    </nav>
+    <div class="row justify-content-center pt-4">
+        <div class="col-md-8 mb-4">
+            <div class="card card-light border-light">
+                <div class="card-body">
+                    <div class="d-flex align-items-end justify-content-center mb-4">
+                        <div class="h1 text-light mb-0">@(Model.Success.Equals(true) ? "Congratulations" : "Oops Sorry")</div>
+                    </div>
+                    <p class="text-center">@Model.Message</p>
+                    <p class="text-center">@(Model.Success.Equals(true) ? "Your rental reference number is: " + Model.Data.Rental_No : "Please try again later. Thank you")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,42 @@
+﻿@model Rental
+
+@{
+    Layout = null;
+
+}
+
+<form id="FrmLD" class="modal-dialog modal-dialog-centered" method="post" asp-area="cms" asp-controller="rentals" asp-action="deniedlease">
+    <div class="modal-content bg-danger">
+        <div class="modal-card card small-box">
+            <div class="modal-body" style="margin-bottom: 0;">
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-uppercase text-muted mb-3">Bike Lease Rejection</h6>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="close" onclick="ModaliaClose('#MdlForm')">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                </div>
+                <hr class="my-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Are you sure you want to deny this reservation no: @Model.Bike_ID.ToString("BRN00000")?</h3>
+                    </div>
+                    <div class="card-footer" style="background-color: transparent !important;">
+                        <div class="pull-right">
+                            <button id="BtnLdAi" type="submit" class="btn btn-md btn-primary">Confirm</button>
+                            <button type="button" class="btn btn-md btn-danger" onclick="ModaliaClose('#MdlForm')">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="FrmLdAi" class="overlay">
+                <span class="spinner-border text-success" role="status"></span>
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.Rental_ID)
+    @Html.HiddenFor(m => m.Collection_ID)
+</form>

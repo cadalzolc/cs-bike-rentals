@@ -1,0 +1,60 @@
+﻿.card > .loading-img,
+.card > .overlay,
+.info-box > .loading-img,
+.info-box > .overlay,
+.overlay-wrapper > .loading-img,
+.overlay-wrapper > .overlay,
+.small-box > .loading-img,
+.small-box > .overlay {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.card .overlay,
+.info-box .overlay,
+.overlay-wrapper .overlay,
+.small-box .overlay {
+    border-radius: .25rem;
+    -ms-flex-align: center;
+    align-items: center;
+    background: rgba(255,255,255,.89);
+    display: -ms-flexbox;
+    display: none;
+    -ms-flex-pack: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+    .card .overlay > .fa,
+    .card .overlay > .fab,
+    .card .overlay > .far,
+    .card .overlay > .fas,
+    .card .overlay > .glyphicon,
+    .card .overlay > .ion,
+    .info-box .overlay > .fa,
+    .info-box .overlay > .fab,
+    .info-box .overlay > .far,
+    .info-box .overlay > .fas,
+    .info-box .overlay > .glyphicon,
+    .info-box .overlay > .ion,
+    .overlay-wrapper .overlay > .fa,
+    .overlay-wrapper .overlay > .fab,
+    .overlay-wrapper .overlay > .far,
+    .overlay-wrapper .overlay > .fas,
+    .overlay-wrapper .overlay > .glyphicon,
+    .overlay-wrapper .overlay > .ion,
+    .small-box .overlay > .fa,
+    .small-box .overlay > .fab,
+    .small-box .overlay > .far,
+    .small-box .overlay > .fas,
+    .small-box .overlay > .glyphicon,
+    .small-box .overlay > .ion {
+        color: #343a40;
+    }
+
+.overlay-show {
+    display: flex !important;
+}

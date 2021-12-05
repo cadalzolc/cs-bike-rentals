@@ -1,0 +1,73 @@
+﻿@inject ICurrentUserService InjUser
+
+
+@{
+    ViewData["Title"] = "My Account";
+    var CurUser = InjUser.GetInfo();
+}
+
+<div class="header">
+    <div class="container-fluid">
+        <div class="header-body mt-n5 mt-md-n6">
+            <div class="row align-items-end">
+                <div class="col-auto">
+                    <div class="avatar avatar-xxl header-avatar-top">
+                        <img src="~/uploads/logo.jpg" alt="@CurUser.Name" class="avatar-img rounded-circle border border-4 border-body">
+                    </div>
+                </div>
+                <div class="col mb-3 ml-n3 ml-md-n2">
+                    <h1 class="header-title">@CurUser.Name</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="list-group list-group-flush my-n3">
+                        <div class="list-group-item py-2">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class="mb-0">Name</h5>
+                                </div>
+                                <div class="col-auto">
+                                    <time class="small text-muted" datetime="1988-10-24">
+                                        @CurUser.Name
+                                    </time>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item py-2">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class="mb-0">Role</h5>
+                                </div>
+                                <div class="col-auto">
+                                    <time class="small text-muted" datetime="1988-10-24">
+                                        @CurUser.Role
+                                    </time>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item py-2">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class="mb-0">Last Login</h5>
+                                </div>
+                                <div class="col-auto">
+                                    <time class="small text-muted" datetime="1988-10-24">
+                                        @DateTime.Now.ToString("MMM dd, yyyy")
+                                    </time>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>

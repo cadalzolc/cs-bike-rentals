@@ -1,0 +1,77 @@
+﻿@model Rental
+
+@{
+    Layout = null;
+
+}
+
+<form id="FrmLD" class="modal-dialog modal-dialog-centered" method="post" asp-area="cms" asp-controller="rentals" asp-action="confirmlease">
+    <div class="modal-content bg-lighter">
+        <div class="modal-card card small-box">
+            <div class="modal-body" style="margin-bottom: 0;">
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-uppercase text-muted mb-3">Bike Lease Assignment</h6>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="close" onclick="ModaliaClose('#MdlForm')">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                </div>
+                <hr class="my-2">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label>Rental No</label>
+                                    <input type="text" class="form-control" readonly="" value="@Model.Bike_ID.ToString("BRN00000")">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label>Rental Date</label>
+                                    <input type="text" class="form-control" readonly="" value="@Model.Rental_Date.ToDate().ToString("MMM-dd-yyyy")">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label>Customer</label>
+                                    <input type="text" class="form-control" readonly="" value="@Model.Customer">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label>Total</label>
+                                    <input type="text" class="form-control" readonly="" value="@((Model.Hourly_Rate * Model.Hourly_Usage).ToString("P #, ##0.00"))">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label>GPS Bicycle Collections <span class="asterisk text-bold">*</span></label>
+                                    <select name="Collection_ID" class="form-control form-select" required="">
+                                        @foreach (var Row in Model.Collections)
+                                        {
+                                            <option value="@Row.Collection_ID">@string.Format("{0}-{1}", Row.Mobile_GPS, Row.Bike)</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer" style="background-color: transparent !important;">
+                        <div class="pull-right">
+                            <button id="BtnLdAi" type="submit" class="btn btn-md btn-primary">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="FrmLdAi" class="overlay">
+                <span class="spinner-border text-success" role="status"></span>
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.Rental_ID)
+    @Html.HiddenFor(m => m.Collection_ID)
+</form>

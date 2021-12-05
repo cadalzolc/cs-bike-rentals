@@ -1,0 +1,38 @@
+﻿@inject ICurrentUserService InjUser
+
+@{
+    var CurUser = InjUser.GetInfo();
+}
+
+<header class="navbar navbar-expand-lg navbar-dark fixed-top" data-scroll-header="" style="background: #1b1924;">
+    <div class="container">
+        <a class="navbar-brand me-3 me-xl-4" asp-area="" asp-controller="home" asp-action="index">
+            <strong>Bike Rentals</strong>
+        </a>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        @if (CurUser.ID.ToNullString().Equals(""))
+        {
+            <a class="btn btn-primary btn-sm ms-2 order-lg-3" href="~/@string.Format("{0}", "#signin-modal")" data-bs-toggle="modal">
+                <i class="fi-plus me-2"></i>Sign-In
+            </a>
+        }
+        else
+        {
+            <a class="btn btn-primary btn-sm ms-2 order-lg-3" asp-area="cms" asp-controller="home" asp-action="index" title=" Go to dashboard.">
+                Hi, @CurUser.Name
+            </a>
+        }
+        <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
+                <li class="nav-item active">
+                    <a class="nav-link" asp-area="" asp-controller="home" asp-action="index">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" asp-area="" asp-controller="about" asp-action="index">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

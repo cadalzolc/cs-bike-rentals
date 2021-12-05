@@ -1,0 +1,70 @@
+[
+  {
+    "outputFileName": "wwwroot/assets/css/fe.min.css",
+    "inputFiles": [
+      "wwwroot/assets/dev_css/toastr.min.css",
+      "wwwroot/assets/dev_css/fe.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/fe.min.js",
+    "inputFiles": [
+      "wwwroot/assets/dev_js/toastr.min.js",
+      "wwwroot/assets/dev_js/app.js",
+      "wwwroot/assets/dev_js/forms.js",
+      "wwwroot/assets/dev_js/fe.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/assets/css/be.lib.min.css",
+    "inputFiles": [
+      "wwwroot/assets/dev_css/be.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/be.lib.min.js",
+    "inputFiles": [
+      "wwwroot/assets/dev_js/jquery.validate.js",
+      "wwwroot/assets/dev_js/jquery.additional.js",
+      "wwwroot/assets/dev_js/app.js",
+      "wwwroot/assets/dev_js/forms.js",
+      "wwwroot/assets/dev_js/be.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/assets/css/prd.min.css",
+    "inputFiles": [
+      "wwwroot/assets/dev_css/be.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/prd.min.js",
+    "inputFiles": [
+      "wwwroot/assets/dev_js/be.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  }
+]
