@@ -8,14 +8,16 @@
     var LnkHost = VwRender.HostURL;
 }
 
-<section class="bg-top-center bg-repeat-0 pt-5" style="background-image: url('./assets/img/hero-bg.png'); background-size: 1920px 630px;">
+<section class="bg-top-center bg-repeat-0 pt-5"
+    style="background-image: url('./assets/img/hero-bg.png'); background-size: 1920px 630px;">
     <div class="container pb-5 pt-3">
         <div class="row pt-lg-4 pt-xl-5" style="padding-top: 0 !important;">
             <div class="col-lg-4 col-md-5 pt-3 pt-md-4 pt-lg-5">
                 <h1 class="display-4 text-light pb-2 mb-4 me-md-n5">Easy way to rent a bike</h1>
                 <p class="fs-lg text-light opacity-70">Bike Renatls a digital shop for renting your dream bike.</p>
             </div>
-            <div class="col-lg-8 col-md-7 pt-md-5"><img class="d-block mt-4 ms-auto" src="./uploads/bike1.png" width="800" alt="Car"></div>
+            <div class="col-lg-8 col-md-7 pt-md-5"><img class="d-block mt-4 ms-auto" src="./uploads/bike1.png"
+                    width="800" alt="Car"></div>
         </div>
     </div>
     <div class="container mt-4 mt-sm-3 mt-lg-n3 pb-2 mb-md-4">
@@ -30,17 +32,21 @@
                 <hr class="hr-light d-sm-none my-2">
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="dropdown border-end-md border-light" data-bs-toggle="select">
-                        <button class="btn btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown">
+                        <button class="btn btn-link dropdown-toggle ps-2 ps-sm-3" type="button"
+                            data-bs-toggle="dropdown">
                             <i class="fi-list me-2"></i>
                             <span class="dropdown-toggle-label">Category</span>
                         </button>
                         <input type="hidden" name="model">
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Altima</span></a></li>
+                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Altima</span></a>
+                            </li>
                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Juke</span></a></li>
                             <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Leaf</span></a></li>
-                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Maxima</span></a></li>
-                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Micra</span></a></li>
+                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Maxima</span></a>
+                            </li>
+                            <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Micra</span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -70,7 +76,8 @@
                             <div class="text-primary fw-bold mb-1">@Row.Hourly_Rate.ToString("#, ##0.00")/Hour</div>
                         </div>
                         <div class="col-auto">
-                          <a class="btn btn-primary" asp-area="" asp-controller="Products" asp-action="Info" asp-route-d="@Row.ID.ToEncode()">More Details</a>
+                            <a class="btn btn-primary" asp-area="" asp-controller="Products" asp-action="Info"
+                            asp-route-d="@Row.ID.ToEncode()">More Details</a>
                         </div>
                     </div>
                 </div>
