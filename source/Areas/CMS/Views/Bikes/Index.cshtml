@@ -1,0 +1,80 @@
+﻿@inject IViewRenderService InjView
+
+@model Pages
+
+@{
+    var LnkHost = InjView.HostURL;
+    ViewData["Title"] = "Transactions - Bike Rentals";
+}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="header">
+                <div class="header-body">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="header-pretitle">Bike Rentals</h6>
+                            <h1 class="header-title">List of Bikes</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-contents">
+                <div class="small-box">
+                    <div id="CnReports" class="table-responsive">
+                        @if (Model.List_Bikes.Count() == 0)
+                        {
+                            <text>
+                                <div class="card">
+                                    <div class="card-body">
+                                        No records found.
+                                    </div>
+                                </div>
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                                <div class="card" data-list='{"valueNames": ["item-bike"], "page": 10, "pagination": {"paginationClass": "list-pagination"}}' id="PrdAllList">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm table-hover table-nowrap card-table" id="SortBy">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th style="width: 120px;"></th>
+                                                    <th>Name</th>
+                                                    <th>Rate</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="list font-size-base">
+                                                @{
+                                                    var Ctr = 1;
+                                                    foreach (var Row in Model.List_Bikes)
+                                                    {
+                                                        <text>
+                                                        <tr>
+                                                            <td>@Ctr</td>
+                                                            <td>
+                                                                <img src="~/@string.Format("uploads/{0}", Row.Photo)" alt="@Row.Name"  class="img-fluid avatar-lg"/>
+                                                            </td>
+                                                            <td class="item-title no-wrap">@Row.Name</td>
+                                                            <td class="item-rate no-wrap">@Row.Hourly_Rate.ToString("#, ##0.00")</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        </text>
+                                                        Ctr++;
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                </text>
+                            }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

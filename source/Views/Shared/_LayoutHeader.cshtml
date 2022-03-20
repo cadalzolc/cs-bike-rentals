@@ -20,19 +20,27 @@
         }
         else
         {
-            <a class="btn btn-primary btn-sm ms-2 order-lg-3" asp-area="cms" asp-controller="home" asp-action="index" title=" Go to dashboard.">
-                Hi, @CurUser.Name
-            </a>
+        <ul class="order-lg-3" style="list-style: none; margin: 0; padding-left: 0; ">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle btn btn-primary btn-sm ms-2 order-lg-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Hi, @CurUser.Name
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-radius: 0; background: #1f1b2d; border-color: #fd5631; margin-left: 10px; ">
+                    <li><a class="dropdown-item" asp-area="cms" asp-controller="home" asp-action="index" style="color: #fff;">Dashboard</a></li>
+                    <li><a class="dropdown-item" asp-area="cms" asp-controller="transaction" asp-action="index" style="color: #fff;">Transaction</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form asp-area="cms" asp-controller="account" asp-action="logout"  id="WebLogout" method="post">
+                            <a href="javascript:document.getElementById('WebLogout').submit()" title="Logout" class="dropdown-item" style="color: #fff;">Logout</a>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
         }
         <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
-            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
-                <li class="nav-item active">
-                    <a class="nav-link" asp-area="" asp-controller="home" asp-action="index">Home</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" asp-area="" asp-controller="about" asp-action="index">About</a>
-                </li>
-            </ul>
+            <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;"></ul>
         </div>
     </div>
 </header>

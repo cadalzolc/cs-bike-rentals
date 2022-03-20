@@ -7,7 +7,12 @@
 <nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
     <div class="container-fluid">
         <div class="form-inline mr-4 d-none d-md-flex">
-           <div class="text-bold text-md">Role: <span class="text-theme-1">@CurUser.Role</span></div>
+           <div class="text-bold text-sm">
+               @if (CurUser.Role.ToUpper().Equals("CUSTOMER"))
+               {
+                   <a asp-area="" asp-controller="home" asp-action="index">Go to Website</a>
+               }
+           </div>
         </div>
         <div class="navbar-user">
             <div class="dropdown mr-4 d-none d-md-flex">Hi, @CurUser.Name</div>

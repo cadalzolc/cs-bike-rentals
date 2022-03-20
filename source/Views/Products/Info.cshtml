@@ -1,7 +1,7 @@
 ﻿@inject IViewRenderService VwRender
 @inject IAppConfig InjApp
 
-@model Bike
+@model Bike_Rental
 
 @{
     ViewData["Title"] = Model.Name;
@@ -37,7 +37,7 @@
                             @Model.Hourly_Rate.ToDouble().ToString("#, ##0.00")
                            <input type="hidden"  name="Bike_ID" value="@Model.ID"/>
                         </div>
-                        <h2 class="h4 text-light mb-4"><i class="fi-car text-primary fs-5 mt-n1 me-2"></i>Rental Form</h2>
+                        <h2 class="h4 text-light mb-4">Rental Form</h2>
                         <div class="row pb-2">
                             <div class="col-sm-8 mb-3">
                                 <label class="form-label text-light" for="Customer">Customer <span class="text-danger">*</span></label>
@@ -51,7 +51,7 @@
                                 <label class="form-label text-light" for="Address">Address <span class="text-danger">*</span></label>
                                 <input class="form-control form-control-light mb-3" type="text" id="Custome_Address" name="Customer_Address" value="" placeholder="# Block, Street, Barangay, City" maxlength="300" required="">
                             </div>
-                            <div class="col-md-3 col-sm-6 mb-3">
+                            <div class="col-md-4 col-sm-6 mb-3">
                                 <label class="form-label text-light" for="Hourly">No of Hours<span class="text-danger">*</span></label>
                                 <select class="form-select form-select-light mb-3" id="Hourly_Usage" name="Hourly_Usage" required="">
                                     <option value="1" selected>1</option>
@@ -68,11 +68,26 @@
                                 <label class="form-label text-light" for="Date_Start">Rental Start <span class="text-danger">*</span></label>
                                 <input class="form-control form-control-light" type="time" id="Rental_Start" name="Rental_Start" min="@DateTime.Now.ToString("hh:mm tt")" value="@DateTime.Now.ToString("hh:mm tt")" placeholder="00:00 AM/PM" required="">
                             </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label text-light" for="Date_Start">Available</label>
+                                <input class="form-control form-control-light" type="text" readonly="readonly" value="@Model.Available" style="background: #312d3d;">
+                            </div>
                         </div>
                         <div class="mt-2">
+
+                            @if (Model.Available <= 0)
+                            {
+                            <a class="btn btn-danger btn-lg" asp-area="" asp-controller="home" asp-action="index">
+                               Out of Stock, Rent another bike.
+                            </a>
+                            }
+                            else
+                            {
                             <button class="btn btn-primary btn-lg" type="submit">
-                                <i class="fi-chat-left me-2"></i>Rent Now
+                                <i class="fi-chat-left me-2"></i>Reserved Now
                             </button>
+                            }
+                            
                         </div>
                     </div>
                 </form>

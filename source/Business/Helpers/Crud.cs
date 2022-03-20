@@ -68,6 +68,46 @@ namespace web.urapz
 
         #endregion
 
+        #region " Register "
+
+        public ApiResult Register(User_Account User)
+        {
+            try
+            {
+                using var Con = MyServer.Connection();
+                using var Cmd = new SqlCommand("SP_SYS_Register", Con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                Cmd.Parameters.Add("@Name", SqlDbType.VarChar, 80);
+                Cmd.Parameters.Add("@Username", SqlDbType.VarChar, 70);
+                Cmd.Parameters.Add("@Password", SqlDbType.VarChar, 35);
+                Cmd.Parameters.Add("@Err", SqlDbType.VarChar, 300);
+
+                Cmd.Parameters["@Err"].Direction = ParameterDirection.InputOutput;
+
+                Cmd.Parameters["@Name"].Value = User.Name;
+                Cmd.Parameters["@Username"].Value = User.Email;
+                Cmd.Parameters["@Password"].Value = User.Password;
+                Cmd.Parameters["@Err"].Value = "";
+
+                Cmd.ExecuteNonQuery();
+
+                var Err = Cmd.Parameters["@Err"].Value.ToNullString();
+
+                if (Err != "") return new ApiResult(Err);
+
+                return new ApiResult("Success", true);
+            }
+            catch (Exception ex)
+            {
+                log.WriteError(ex.Message, "CMS Register");
+                return new ApiResult("Something went wrong in your request");
+            }
+        }
+
+        #endregion
+
         #region " Password Change "
 
         public ApiResult PasswordChange(User_Account Model)
@@ -201,6 +241,36 @@ namespace web.urapz
             catch (Exception ex)
             {
                 log.WriteError(ex.Message, "Rentals-Denied");
+                return new Data_Response("Something went wrong in your request");
+            }
+        }
+
+        #endregion
+
+        #region " Sales "
+
+        public Data_Response Sales_Save(Rental_Sales Model)
+        {
+            try
+            {
+                using var Con = MyServer.Connection();
+                using var Cmd = new SqlCommand("SP_TRN_Sales_Save", Con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                Cmd.Parameters.AddWithValue("@Rental_ID", Model.Rental_ID);
+                Cmd.Parameters.AddWithValue("@Rental_Date", Model.Rental_Date);
+                Cmd.Parameters.AddWithValue("@Rent", Model.Rent);
+                Cmd.Parameters.AddWithValue("@Penalty", Model.Penalty);
+                Cmd.Parameters.AddWithValue("@Total", Model.Total);
+                Cmd.Parameters.AddWithValue("@Stamper_ID", Model.Stamper_ID);
+                Cmd.ExecuteNonQuery();
+
+                return new Data_Response("The rental status was successfuly returned", true);
+            }
+            catch (Exception ex)
+            {
+                log.WriteError(ex.Message, "Rentals-Save");
                 return new Data_Response("Something went wrong in your request");
             }
         }

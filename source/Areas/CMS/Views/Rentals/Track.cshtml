@@ -4,7 +4,7 @@
 
 @{
     var LnkHost = InjView.HostURL;
-    ViewData["Title"] = "History - Bike Rentals";
+    ViewData["Title"] = "Leased - Bike Rentals";
 }
 <div class="container-fluid">
     <div class="row justify-content-center">
@@ -14,7 +14,7 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <h6 class="header-pretitle">Bike Rentals</h6>
-                            <h1 class="header-title">History</h1>
+                            <h1 class="header-title">Track</h1>
                         </div>
                     </div>
                 </div>
@@ -32,12 +32,12 @@
             else
             {
                 <text>
-                    <div class="card" data-list='{"valueNames": ["item-bike"], "page": 10, "pagination": {"paginationClass": "list-pagination"}}' id="PrdAllList">
+                    <div class="card small-box" data-list='{"valueNames": ["item-bike"], "page": 10, "pagination": {"paginationClass": "list-pagination"}}' id="PrdAllList">
                         <div class="table-responsive">
                             <table class="table table-sm table-hover table-nowrap card-table" id="SortBy">
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>No</th>
                                         <th>Rental Date</th>
                                         <th>Customer</th>
                                         <th>Bike</th>
@@ -45,6 +45,7 @@
                                         <th>Rate</th>
                                         <th>Hours</th>
                                         <th>Total</th>
+                                        <th class="text-center"></th>
                                     </tr>
                                 </thead>
                                 <tbody class="list font-size-base">
@@ -63,6 +64,19 @@
                                                 <td class="item-rate no-wrap">@Row.Hourly_Rate.ToString("#, ##0.00")</td>
                                                 <td class="item-usage no-wrap">@Row.Hourly_Usage</td>
                                                 <td class="item-total no-wrap">@((Row.Hourly_Usage * Row.Hourly_Rate).ToString("#, ##0.00"))</td>
+                                                <td style="width: 150px;" class="text-right">
+                                                    <a style="padding: 3px 7px;" class="btn btn-sm btn-primary"
+                                                       asp-area="cms" asp-controller="rentals" asp-action="maps" asp-route-key="@Row.Rental_ID.ToString().ToEncode()" target="_blank">
+                                                        <i data-feather="map" style="height: 13px;"></i>View Location
+                                                    </a>
+                                                    <a style="padding: 3px 7px;" href="#" class="btn btn-sm btn-success"
+                                                       data-url="@Url.Action("return", "rentals", new { Area = "cms", key = Row.Rental_ID.ToString().ToEncode() })"
+                                                       data-modalia="#MdlForm"
+                                                       data-loader="#FrmLdMap"
+                                                       onclick="return PopupDialog(this);">
+                                                        <i data-feather="edit" style="height: 13px;"></i> Return
+                                                    </a>
+                                                </td>
                                             </tr>
                 </text>
                 Ctr++;
@@ -70,6 +84,9 @@
                                     }
                                 </tbody>
                             </table>
+                        </div>
+                        <div id="FrmLdMap" class="overlay">
+                            <span class="spinner-border text-success" role="status"></span>
                         </div>
                     </div>
                     </text>

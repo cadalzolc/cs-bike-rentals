@@ -23,5 +23,13 @@ namespace web.urapz
         public string Status { get; set; } = "";
         public int Bike_ID { get; set; } = 0;
         public string Bike { get; set; } = "";
+        public string Map_URL { get; set; } = "";
     }
+
+    public class Bike_Rental : Bike
+    {
+        public int Leased { get; set; } = 0;
+        public int Available { get; set; } = 0;
+    }
+
 }

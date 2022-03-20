@@ -276,13 +276,19 @@ function FormReloader(frm) {
         success: function (data) {
             if (data.success === true) {
                 toastr.success(data.message);
-                setTimeout(function () {
-                    if (FrmReturn) {
-                        window.location.href = FrmReturn;
-                    } else {
-                        window.location.reload(true);
-                    }
-                }, 1500);
+                if (data.retURL) {
+                    setTimeout(function () {
+                        window.location.href = data.retURL;
+                    }, 1500);
+                } else {
+                    setTimeout(function () {
+                        if (FrmReturn) {
+                            window.location.href = FrmReturn;
+                        } else {
+                            window.location.reload(true);
+                        }
+                    }, 1500);
+                }
             } else {
                 toastr.error(data.message);
                 if (FbnConfirm) { $(FbnConfirm).attr("disabled", false); }
@@ -295,6 +301,7 @@ function FormReloader(frm) {
         },
         error: function () {
             toastr.error("Oops! Something went wrong on your request.");
+            if (FbnConfirm) { $(FbnConfirm).attr("disabled", false); }
             if (FbnClose) { $(FbnClose).attr("disabled", false); }
             if (FbnCardReloader) {
                 $(FbnCardReloader).removeClass('overlay-show');
@@ -601,13 +608,17 @@ function FormModalSuccess(data, Frm) {
     if (data.success === true) {
         toastr.success(data.message);
         if (FrmReload && FrmReload === 1) {
-            setTimeout(function () {
-                if (FrmReturn) {
-                    window.location.href = FrmReturn;
-                } else {
-                    window.location.reload(true);
-                }
-            }, 1500);
+            if (data.retURL) {
+                window.location.href = retURL;
+            } else {
+                setTimeout(function () {
+                    if (FrmReturn) {
+                        window.location.href = FrmReturn;
+                    } else {
+                        window.location.reload(true);
+                    }
+                }, 1500);
+            }
         } else {
             if (FrmLoader) { $(FrmLoader).removeClass('overlay-show'); }
         }

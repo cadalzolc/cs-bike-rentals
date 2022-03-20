@@ -11,5 +11,6 @@ namespace web.urapz
         public IEnumerable<Bike> List_Bikes = new List<Bike>();
         public IEnumerable<Rental> List_Rentals = new List<Rental>();
         public User_Account Info_User { get; set; } = new User_Account();
+        public IEnumerable<Rental_Sales> Sales = new List<Rental_Sales>();
     }
 }

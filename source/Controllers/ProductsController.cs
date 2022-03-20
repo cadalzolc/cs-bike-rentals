@@ -29,7 +29,7 @@ namespace web.urapz.bike_rentals.Controllers
             if (ID.Equals(0)) return NotFound();
 
             var Fch = new Fetch(MyServer);
-            var Model = Fch.GetBikesInfo(ID);
+            var Model = Fch.GetBikesInfoRental(ID);
 
             return View("Info", Model);
         }

@@ -54,7 +54,6 @@ namespace web.urapz.bike_rentals
             mvcBuilder.AddRazorRuntimeCompilation();
 #endif
 
-
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();

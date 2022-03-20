@@ -1,0 +1,56 @@
+﻿@model Pages
+
+@if (Model.Sales.Count() == 0)
+{
+    <text>
+        <div class="card">
+            <div class="card-body">
+                No records found.
+            </div>
+        </div>
+    </text>
+}
+else
+{
+    <text>
+        <div class="card">
+            <div class="card-header">
+                <h3 style="margin-bottom: 0; font-size: 1.5rem;">Total: @Model.Sales.Sum(r => r.Total).ToString("#, ##0.00")</h3>
+            </div>
+        </div>
+        <div class="card" data-list='{"valueNames": ["item-bike"], "page": 10, "pagination": {"paginationClass": "list-pagination"}}' id="PrdAllList">
+            <div class="table-responsive">
+                <table class="table table-sm table-hover table-nowrap card-table" id="SortBy">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Rental Date</th>
+                            <th>Rent</th>
+                            <th>Penalty</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list font-size-base">
+                        @{
+                            var Ctr = 1;
+                            foreach (var Row in Model.Sales)
+                            {
+                                var Stamp = Row.Rental_Date.ToDate().ToString("MMM-dd-yyyy");
+                                <text>
+                                    <tr>
+                                        <td>@Ctr</td>
+                                        <td class="item-title no-wrap">@Row.Rental_Date.ToDate().ToString("MMM-dd-yyyy").ToUpper()</td>
+                                        <td class="item-rate no-wrap">@Row.Rent.ToString("#, ##0.00")</td>
+                                        <td class="item-rate no-wrap">@Row.Penalty.ToString("#, ##0.00")</td>
+                                        <td class="item-rate no-wrap">@Row.Total.ToString("#, ##0.00")</td>
+                                    </tr>
+                                </text>
+                                Ctr++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </text>
+    }

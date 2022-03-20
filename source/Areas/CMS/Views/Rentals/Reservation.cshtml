@@ -23,51 +23,8 @@
             {
                 <text>
                     <div class="card">
-                        <div class="card-header">
-                            <div class="row align-items-center">
-                                <div class="col" style="border: 1px solid #e3ebf6;">
-                                    <form>
-                                        <div class="input-group input-group-flush">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i data-feather="search" style="height: 18px;"></i>
-                                                </span>
-                                            </div>
-                                            <input class="list-search form-control" type="search" placeholder="Search">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-auto mr-n3">
-                                    <form data-select2-id="3">
-                                        <select class="custom-select custom-select-sm form-control-flush" data-toggle="select" data-options='{"minimumResultsForSearch": -1}' tabindex="-1" aria-hidden="false">
-                                            <option value="10" data-select2-id="1">10 per page</option>
-                                            <option value="25" data-select2-id="2">25 per page</option>
-                                            <option value="50" data-select2-id="2">50 per page</option>
-                                        </select>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-sm table-hover table-nowrap card-table">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Rental Date</th>
-                                        <th>Customer</th>
-                                        <th>Bike</th>
-                                        <th>Rate</th>
-                                        <th>Hours</th>
-                                        <th>Rate</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="list font-size-base">
-                                    <tr>
-                                        <td colspan="15">No records to display</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="card-body">
+                            No records found.
                         </div>
                     </div>
                 </text>
@@ -75,32 +32,7 @@
             else
             {
                 <text>
-                    <div class="card" data-list='{"valueNames": ["item-bike"], "page": 10, "pagination": {"paginationClass": "list-pagination"}}' id="PrdAllList">
-                        <div class="card-header">
-                            <div class="row align-items-center">
-                                <div class="col" style="border: 1px solid #e3ebf6;">
-                                    <form>
-                                        <div class="input-group input-group-flush">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i data-feather="search" style="height: 18px;"></i>
-                                                </span>
-                                            </div>
-                                            <input class="list-search form-control" type="search" placeholder="Search">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-auto mr-n3">
-                                    <form data-select2-id="3">
-                                        <select class="custom-select custom-select-sm form-control-flush" data-toggle="select" data-options='{"minimumResultsForSearch": -1}' tabindex="-1" aria-hidden="false">
-                                            <option value="10" data-select2-id="1">10 per page</option>
-                                            <option value="25" data-select2-id="2">25 per page</option>
-                                            <option value="50" data-select2-id="2">50 per page</option>
-                                        </select>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="card" data-list='{"valueNames": ["item-bike"], "page": 100, "pagination": {"paginationClass": "list-pagination"}}' id="PrdAllList">
                         <div class="table-responsive">
                             <table class="table table-sm table-hover table-nowrap card-table" id="SortBy">
                                 <thead>

@@ -51,7 +51,7 @@ namespace web.urapz.bike_rentals.Areas.CMS.Controllers
             });
             var Model = new User_Account
             {
-                ReturnURL = (ReturnUrl == "" ? NewUrl : ReturnUrl)
+                ReturnURL = (ReturnUrl.ToNullString().Equals("") ? NewUrl : ReturnUrl)
             };
             return View(Model);
         }
@@ -72,7 +72,23 @@ namespace web.urapz.bike_rentals.Areas.CMS.Controllers
 
             RefreshUserClaims(UserInfo);
 
-            return Json(new WebResult(true, "Successful Login"));
+            var RetVal = new WebResult(true, "Successful Login");
+
+            if (UserInfo.Role_ID.Equals("1"))
+            {
+                var NewUrl = Url.Action(new UrlActionContext
+                {
+                    Protocol = Request.Scheme,
+                    Host = Request.Host.Value,
+                    Controller = "home",
+                    Action = "index",
+                    Values = new { Area = "" }
+                });
+
+                RetVal.RetURL = NewUrl;
+            }
+
+            return Json(RetVal);
         }
 
         #endregion
@@ -85,6 +101,25 @@ namespace web.urapz.bike_rentals.Areas.CMS.Controllers
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home", new { Area = "CMS" });
+        }
+
+        #endregion
+
+        #region " Register "
+
+        [HttpPost]
+        public JsonResult Register(User_Account Model)
+        {
+            if (Model.Name.ToNullString().Equals("")) return Json(new WebResult(false, "Fullname is required."));
+            if (Model.Email.ToNullString().Equals("")) return Json(new WebResult(false, "Email is required."));
+            if (Model.Password.ToNullString().Equals("")) return Json(new WebResult(false, "Password is required"));
+            if (Model.Password_Confirm.ToNullString().Equals("")) return Json(new WebResult(false, "Confirm Password is required"));
+            if (!Model.Password.Equals(Model.Password_Confirm)) return Json(new WebResult(false, "Password does not matched"));
+
+            var Exec = new Crud(MyServer);
+            var Results = Exec.Register(Model);
+
+            return Json(Results);
         }
 
         #endregion

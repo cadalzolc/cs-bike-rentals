@@ -11,7 +11,7 @@
             <div class="modal-body" style="margin-bottom: 0;">
                 <div class="row">
                     <div class="col">
-                        <h6 class="text-uppercase text-muted mb-3">Bike Lease Assignment</h6>
+                        <h6 class="text-uppercase text-muted mb-3">Rental Accpetance</h6>
                     </div>
                     <div class="col-auto">
                         <button type="button" class="close" onclick="ModaliaClose('#MdlForm')">
@@ -26,7 +26,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label>Rental No</label>
-                                    <input type="text" class="form-control" readonly="" value="@Model.Bike_ID.ToString("BRN00000")">
+                                    <input type="text" class="form-control" readonly="" value="@Model.Rental_ID.ToString("BRN00000")">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
@@ -53,7 +53,7 @@
                                     <select name="Collection_ID" class="form-control form-select" required="">
                                         @foreach (var Row in Model.Collections)
                                         {
-                                            <option value="@Row.Collection_ID">@string.Format("{0}-{1}", Row.Mobile_GPS, Row.Bike)</option>
+                                            <option value="@Row.Collection_ID">@string.Format("{0}-{1}", "BCI" + Row.Collection_ID.ToString("000000"), Row.Mobile_GPS)</option>
                                         }
                                     </select>
                                 </div>

@@ -84,6 +84,36 @@ namespace web.urapz
 
         #endregion
 
+        #region " To Bike Rental "
+
+        public static Bike_Rental ToBikeRental(DataRow Row)
+        {
+            if (Row == null) return new Bike_Rental();
+            return new Bike_Rental
+            {
+                ID = Row["ID"].ToInt(),
+                Name = Row["Name"].ToString(),
+                Category = new Bike_Category()
+                {
+                    ID = Row["Category_ID"].ToInt(),
+                    Name = Row["Category"].ToString(),
+                },
+                Hourly_Rate = Row["Hourly_Rate"].ToDouble(),
+                Stock = Row["Stock"].ToInt(),
+                Photo = Row["Photo"].ToNullString("default.jpg"),
+                Leased = Row["Leased"].ToInt(),
+                Available = Row["Available"].ToInt()
+            };
+        }
+
+        public static IEnumerable<Bike_Rental> ToBikeRentals(IEnumerable<DataRow> Rows)
+        {
+            if (Rows == null || Rows.Count().Equals(0)) return new List<Bike_Rental>();
+            return Rows.Select(r => ToBikeRental(r));
+        }
+
+        #endregion
+
         #region " To Bike Collection "
 
         public static Bike_Collection ToBikeColllection(DataRow Row)
@@ -103,6 +133,7 @@ namespace web.urapz
                 Photo = Row["Photo"].ToNullString("default.jpg"),
                 Mobile_GPS = Row["Mobile_GPS"].ToNullString(),
                 Status = Row["Status"].ToNullString(),
+                Map_URL = Row["GPS_URL"].ToNullString(),
             };
         }
 
@@ -143,6 +174,82 @@ namespace web.urapz
         {
             if (Rows == null || Rows.Count().Equals(0)) return new List<Rental>();
             return Rows.Select(r => ToRental(r));
+        }
+
+        #endregion
+
+        #region " To Rental Collection "
+
+        public static Rental_Collection ToRentalColllection(DataRow Row)
+        {
+            if (Row == null) return new Rental_Collection();
+            return new Rental_Collection
+            {
+                Rental_Collection_ID = Row["ID"].ToInt(),
+                Rental_ID = Row["Rental_ID"].ToInt(),
+                Collection_ID = Row["Collection_ID"].ToInt(),
+                Bike_ID = Row["Bike_ID"].ToInt(),
+                Mobile_GPS = Row["Mobile_GPS"].ToNullString(),
+                Map_URL = Row["GPS_URL"].ToNullString(),
+            };
+        }
+
+        public static IEnumerable<Rental_Collection> ToRentalColllections(IEnumerable<DataRow> Rows)
+        {
+            if (Rows == null || Rows.Count().Equals(0)) return new List<Rental_Collection>();
+            return Rows.Select(r => ToRentalColllection(r));
+        }
+
+        #endregion
+
+        #region " To Rental Calculate "
+
+        public static Rental_Calculate ToRentalCalculate(DataRow Row)
+        {
+            if (Row == null) return new Rental_Calculate();
+            return new Rental_Calculate
+            {
+                Rental_ID = Row["ID"].ToInt(),
+                Rental_No = "BRN" + Row["ID"].ToInt().ToString("00000"),
+                Rental_Date = Row["Rental_Date"].ToNullString(),
+                Rental_Start = Row["Rental_Start"].ToNullString(),
+                Rental_End = Row["Rental_End"].ToNullString(),
+                Customer = Row["Customer"].ToNullString(),
+                Customer_Address = Row["Customer_Address"].ToNullString(),
+                Rent = Row["Rent"].ToDouble(),
+                Lapse = Row["Lapse"].ToInt(),
+                Penalty = Row["Penalty"].ToDouble(),
+                Total = Row["Total"].ToDouble(),
+            };
+        }
+
+        public static IEnumerable<Rental_Calculate> ToRentalCalculates(IEnumerable<DataRow> Rows)
+        {
+            if (Rows == null || Rows.Count().Equals(0)) return new List<Rental_Calculate>();
+            return Rows.Select(r => ToRentalCalculate(r));
+        }
+
+        #endregion
+
+        #region " To Rental Sales "
+
+        public static Rental_Sales ToRentalSale(DataRow Row)
+        {
+            if (Row == null) return new Rental_Sales();
+            return new Rental_Sales
+            {
+                Rental_ID = Row["Rental_ID"].ToInt(),
+                Rental_Date = Row["Rental_Date"].ToString(),
+                Rent = Row["Rent"].ToDouble(),
+                Penalty = Row["Penalty"].ToDouble(),
+                Total = Row["Total"].ToDouble(),
+            };
+        }
+
+        public static IEnumerable<Rental_Sales> ToRentalSales(IEnumerable<DataRow> Rows)
+        {
+            if (Rows == null || Rows.Count().Equals(0)) return new List<Rental_Sales>();
+            return Rows.Select(r => ToRentalSale(r));
         }
 
         #endregion

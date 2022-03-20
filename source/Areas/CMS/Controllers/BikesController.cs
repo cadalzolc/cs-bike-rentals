@@ -10,8 +10,8 @@ namespace web.urapz.bike_rentals.Areas.CMS.Controllers
 
     [Authorize]
     [Area("CMS")]
-    public class ManagerController : Controller
-    { 
+    public class BikesController : Controller
+    {
 
         #region " Init "
 
@@ -19,7 +19,7 @@ namespace web.urapz.bike_rentals.Areas.CMS.Controllers
         private readonly IViewRenderService InjView;
         private readonly ICurrentUserService InjUser;
 
-        public ManagerController(IConnectionService _SrsServer, IViewRenderService _SrsView, ICurrentUserService _SrsUser)
+        public BikesController(IConnectionService _SrsServer, IViewRenderService _SrsView, ICurrentUserService _SrsUser)
         {
             MyServer = _SrsServer;
             InjView = _SrsView;
@@ -27,6 +27,14 @@ namespace web.urapz.bike_rentals.Areas.CMS.Controllers
         }
 
         #endregion
+
+        public IActionResult Index()
+        {
+            var Get = new Fetch(MyServer);
+            var Model = new Pages();
+            Model.List_Bikes = Get.GetBikes(100);
+            return View(Model);
+        }
 
     }
 }

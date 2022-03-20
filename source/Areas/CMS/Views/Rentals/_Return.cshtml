@@ -1,0 +1,104 @@
+﻿@model Rental_Calculate
+
+@{
+    Layout = null;
+
+}
+
+<form id="FrmLD" class="modal-dialog modal-dialog-centered" method="post" asp-area="cms" asp-controller="rentals" asp-action="return">
+    <div class="modal-content bg-lighter">
+        <div class="modal-card card small-box">
+            <div class="modal-body" style="margin-bottom: 0; padding-bottom: 0;">
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-uppercase text-muted mb-3">Return Transaction</h6>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="close" onclick="ModaliaClose('#MdlForm')">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                </div>
+                <hr class="my-2">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <div class="form-group">
+                                    <label>Rental No</label>
+                                    <input type="text" class="form-control" readonly="" value="@Model.Rental_No">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="form-group">
+                                    <label>Rental Date</label>
+                                    <input type="text" class="form-control" readonly="" value="@Model.Rental_Date.ToDate().ToString("MMM-dd-yyyy")">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="form-group">
+                                    <label>Rent Amount</label>
+                                    <input type="text" class="form-control" name="Rent" readonly="" value="@Model.Rent">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12">
+                                <div class="form-group">
+                                    <label>Customer</label>
+                                    <input type="text" class="form-control" readonly="" value="@Model.Customer">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label>Start</label>
+                                    <input type="text" class="form-control" readonly="" value="@Model.Rental_Start.ToDate().ToString("MMM-dd-yyyy hh:mm tt")">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label>End</label>
+                                    <input type="text" class="form-control" readonly="" value="@Model.Rental_End.ToDate().ToString("MMM-dd-yyyy hh:mm tt")">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="form-group">
+                                    <label>Hour Lapse</label>
+                                    <input type="text" class="form-control" name="Lapse" readonly="" value="@Model.Lapse">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="form-group">
+                                    <label>Penalty Rate</label>
+                                    <input type="text" class="form-control" readonly="" value="5">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="form-group">
+                                    <label>Penalty</label>
+                                    <input type="text" class="form-control" name="Penalty" readonly="" value="@Model.Penalty">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <div class="form-group">
+                                    <label>Total</label>
+                                    <input type="text" class="form-control" name="Total" readonly="" value="@Model.Total">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer" style="background-color: transparent !important;">
+                        <div class="pull-right">
+                            <button id="BtnLdAi" type="submit" class="btn btn-md btn-primary">Confirm</button>
+                            <button type="button" class="btn btn-md btn-danger" onclick="ModaliaClose('#MdlForm')">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="FrmLdAi" class="overlay">
+                <span class="spinner-border text-success" role="status"></span>
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.Rental_Date)
+    @Html.HiddenFor(m => m.Rental_ID)
+</form>
