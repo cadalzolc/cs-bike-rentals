@@ -49,5 +49,15 @@ namespace web.urapz.bike_rentals.Controllers
 
         #endregion
 
+        #region " Search "
+
+        [HttpPost]
+        public IActionResult Search(string Search)
+        {           
+            return View();
+        }
+
+        #endregion
+
     }
 }

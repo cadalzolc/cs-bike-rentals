@@ -1,0 +1,6 @@
+{"Stamp":"2022-04-24 11:07:23","Request":"Connect to Server","Message":"Login failed for user \u0027sa\u0027.","Params":"","Requestor":""}
+{"Stamp":"2022-04-24 12:50:32","Request":"Connect to Server","Message":"Login failed for user \u0027sa\u0027.","Params":"","Requestor":""}
+{"Stamp":"2022-04-24 12:51:11","Request":"Connect to Server","Message":"Login failed for user \u0027sa\u0027.","Params":"","Requestor":""}
+{"Stamp":"2022-04-24 12:52:08","Request":"Connect to Server","Message":"Login failed for user \u0027sa\u0027.","Params":"","Requestor":""}
+{"Stamp":"2022-04-24 12:54:32","Request":"Connect to Server","Message":"A connection was successfully established with the server, but then an error occurred during the login process. (provider: Shared Memory Provider, error: 0 - No process is on the other end of the pipe.)","Params":"","Requestor":""}
+{"Stamp":"2022-04-24 12:55:11","Request":"Connect to Server","Message":"Login failed for user \u0027sa\u0027.","Params":"","Requestor":""}
