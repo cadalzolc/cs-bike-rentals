@@ -1,0 +1,5 @@
+{"Stamp":"2022-04-27 18:52:34","Request":"Connect to Server","Message":"Incorrect syntax near \u00273\u0027.","Params":"","Requestor":""}
+{"Stamp":"2022-04-27 18:52:41","Request":"Connect to Server","Message":"Incorrect syntax near \u002710\u0027.","Params":"","Requestor":""}
+{"Stamp":"2022-04-27 19:10:51","Request":"Connect to Server","Message":"Incorrect syntax near \u00273\u0027.","Params":"","Requestor":""}
+{"Stamp":"2022-04-27 19:22:15","Request":"Connect to Server","Message":"Incorrect syntax near \u002710\u0027.","Params":"","Requestor":""}
+{"Stamp":"2022-04-27 19:23:18","Request":"Connect to Server","Message":"Incorrect syntax near \u002710\u0027.","Params":"","Requestor":""}

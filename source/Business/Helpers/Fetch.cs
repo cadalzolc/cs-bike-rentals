@@ -22,9 +22,28 @@ namespace web.urapz
 
         #region " Get - Bikes "
 
-        public IEnumerable<Bike> GetBikes(int Top)
+        public IEnumerable<Bike> GetBikes(int Top, string Search = "")
         {
-            var DT = MyServer.ToData(string.Format("SELECT TOP {0} * FROM VW_CRM_Bikes", Top));
+            string WHR = "";
+
+            if (!Search.Equals(""))
+            {
+                WHR = string.Format("WHERE Name LIKE '%{0}%' OR Category LIKE '%{0}%'", Search);
+            }
+           
+            var DT = MyServer.ToData(string.Format("SELECT TOP {0} * FROM VW_CRM_Bikes {1}", Top, WHR));
+
+            if (DT == null) return new List<Bike>();
+
+            return Table.ToBikes(DT.AsEnumerable());
+        }
+
+        public IEnumerable<Bike> GetBikes(string Search, int Category)
+        {
+
+            var WHR = string.Format("WHERE Name LIKE '%{0}%' OR Category LIKE '%{0}%'", Search.ToNullString());
+            var AND = Category == 0 ? "" : string.Format("AND Category_ID = {0}", Category);
+            var DT = MyServer.ToData(string.Format("SELECT * FROM VW_CRM_Bikes {0} {1}", WHR, AND));
 
             if (DT == null) return new List<Bike>();
 

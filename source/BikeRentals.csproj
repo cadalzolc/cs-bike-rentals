@@ -7,8 +7,8 @@
     <UserSecretsId>9e8e2f7e-8821-4e35-83bf-596b7de76306</UserSecretsId>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Lambert Cadalzo</Authors>
-    <Product>Web App</Product>
-    <Company>UrApz Automation &amp; IT Solutions</Company>
+    <Product>Web App - Bike Rentals</Product>
+    <Company>Niftyers</Company>
   </PropertyGroup>
 
   <ItemGroup>
