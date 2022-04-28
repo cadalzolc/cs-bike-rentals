@@ -9,49 +9,52 @@
 }
 
 <section class="bg-top-center bg-repeat-0 pt-5"
-    style="background-image: url('./assets/img/hero-bg.png'); background-size: 1920px 630px;">
+         style="background-image: url('./assets/img/hero-bg.png'); background-size: 1920px 630px;">
     <div class="container pb-5 pt-3">
         <div class="row pt-lg-4 pt-xl-5" style="padding-top: 0 !important;">
             <div class="col-lg-4 col-md-5 pt-3 pt-md-4 pt-lg-5">
                 <h1 class="display-4 text-light pb-2 mb-4 me-md-n5">Easy way to rent a bike</h1>
                 <p class="fs-lg text-light opacity-70">Bike Rentals a digital shop for renting your dream bike.</p>
             </div>
-            <div class="col-lg-8 col-md-7 pt-md-5"><img class="d-block mt-4 ms-auto" src="./uploads/bike1.png"
-                    width="800" alt="Car"></div>
+            <div class="col-lg-8 col-md-7 pt-md-5">
+                <img class="d-block mt-4 ms-auto" src="./uploads/bike1.png"
+                     width="800" alt="Car">
+            </div>
         </div>
     </div>
     <div class="container mt-4 mt-sm-3 mt-lg-n3 pb-5 mb-md-4">
-          <form class="form-group form-group-light d-block" asp-area="" asp-controller="products" asp-action="search">
+        <form class="form-group form-group-light d-block" asp-area="" asp-controller="products" asp-action="search">
             <div class="row g-0 ms-lg-n2">
-              <div class="col-lg-8">
-                <div class="input-group border-end-lg border-light"><span class="input-group-text text-muted ps-2 ps-sm-3"><i class="fi-search"></i></span>
-                  <input class="form-control" type="text" name="keywords" placeholder="Keywords...">
+                <div class="col-lg-7">
+                    <div class="input-group border-end-lg border-light">
+                        <span class="input-group-text text-muted ps-2 ps-sm-3"><i class="fi-search"></i></span>
+                        <input class="form-control" type="text" name="keywords" placeholder="Keywords...">
+                    </div>
                 </div>
-              </div>
-              <hr class="hr-light d-lg-none my-2">
-              <div class="col-lg-2 col-md-3 col-sm-6">
-                <div class="dropdown border-end-sm border-light" data-bs-toggle="select">
-                  <button class="btn btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown">
-                      <i class="fi-car fs-lg me-2"></i>
-                      <span class="dropdown-toggle-label">Body type</span>
-                 </button>
-                  <input type="hidden" name="type">
-                  <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a data-model-id="1" data-model-name="Road Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Road Bikes</span></a></li>
-                    <li><a data-model-id="1" data-model-name="Mountain Bikes " class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Mountain Bikes </span></a></li>
-                    <li><a data-model-id="1" data-model-name="Gravel/Adventure Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Gravel/Adventure Bikes</span></a></li>
-                    <li><a data-model-id="1" data-model-name="Utility Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Utility Bikes </span></a></li>
-                    <li><a data-model-id="1" data-model-name="Comfort/Fitness Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Comfort/Fitness Bikes</span></a></li>
-                  </ul>
+                <hr class="hr-light d-lg-none my-2">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="dropdown border-end-sm border-light" data-bs-toggle="select">
+                        <button class="btn btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown">
+                            <i class="fi-car fs-lg me-2"></i>
+                            <span class="dropdown-toggle-label" id="model-id">Body type</span>
+                        </button>
+                        <input type="hidden" id="keyrefs" name="keyrefs" value="">
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a data-model-id="1" data-model-name="Road Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Road Bikes</span></a></li>
+                            <li><a data-model-id="2" data-model-name="Mountain Bikes " class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Mountain Bikes </span></a></li>
+                            <li><a data-model-id="3" data-model-name="Gravel/Adventure Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Gravel/Adventure Bikes</span></a></li>
+                            <li><a data-model-id="4" data-model-name="Utility Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Utility Bikes </span></a></li>
+                            <li><a data-model-id="5" data-model-name="Comfort/Fitness Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Comfort/Fitness Bikes</span></a></li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
-              <hr class="hr-light d-lg-none my-2">
-              <div class="col-lg-2">     
-                <button class="btn btn-primary w-100" type="submit">Search</button>
-              </div>
+                <hr class="hr-light d-lg-none my-2">
+                <div class="col-lg-2">
+                    <button class="btn btn-primary w-100" type="submit">Search</button>
+                </div>
             </div>
-          </form>
-        </div>
+        </form>
+    </div>
 </section>
 
 <section class="container pt-sm-3 pt-4 pb-3 mb-6">
@@ -63,7 +66,7 @@
                 <div class="card card-light card-hover h-100">
                     <div class="card-img-top card-img-hover bg-light py-1 px-1">
                         <a class="img-overlay" href="#"></a>
-                        <img src="./@string.Format("uploads/{0}", Row.Photo)" alt="@Row.Name">
+                        <img src="~/@string.Format("uploads/{0}", Row.Photo)" alt="@Row.Name">
                     </div>
                     <div class="card-body" style="display: flex;">
                         <div class="col">
@@ -72,7 +75,7 @@
                         </div>
                         <div class="col-auto">
                             <a class="btn btn-primary" asp-area="" asp-controller="Products" asp-action="Info"
-                            asp-route-d="@Row.ID.ToEncode()">More Details</a>
+                               asp-route-d="@Row.ID.ToEncode()">More Details</a>
                         </div>
                     </div>
                 </div>
@@ -82,3 +85,12 @@
 </section>
 <br />
 <section class="py-6"></section>
+
+@section Scripts{
+    <script>
+        $('a[data-model-id]').on('click', function () {
+            $('#model-id').html($(this).data('model-name'));
+            $('#keyrefs').val($(this).data('model-id'));
+        });
+    </script>
+}
