@@ -72,6 +72,13 @@
     margin-bottom: 0;
 }
 
+.input-group-box {
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    height:  auto !important;
+}
+
 .input-group:not(.input-group-alt) {
     height: calc(1.5em + .75rem + 2px);
     border: 1px solid #c6c9d5;
@@ -81,6 +88,18 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     transition: all .2s ease-in-out;
+}
+
+.dropdown-item {
+    cursor: pointer !important;
+}
+
+.input-group-filter {
+    min-width: 158px;
+    text-align: left;
+    background: #fff;
+    color: #546375;
+    border-color: #d2ddec;
 }
 
 @media (min-width: 768px) {

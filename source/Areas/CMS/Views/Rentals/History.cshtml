@@ -33,7 +33,38 @@
             {
                 <text>
                     <div class="card" data-list='{"valueNames": ["item-bike"], "page": 10, "pagination": {"paginationClass": "list-pagination"}}' id="PrdAllList">
-                        <div class="table-responsive">
+                        <div class="card-search">
+                            <form method="post" asp-area="cms" asp-controller="rentals" asp-action="search" asp-route-page="r4" onsubmit="return OnSinlgePageSearch(this);" data-form-display="#tbl0res" class="form-group">
+                                <div class="input-group input-group-alt">
+                                    <div class="input-group-prepend dropdown">
+                                        <button class="btn btn-secondary input-group-filter" type="button" data-toggle="dropdown" aria-expanded="false">
+                                            <span id="searchby">Filter By All</span>
+                                            <span class="caret"></span>
+                                        </button>
+                                        <div class="dropdown-menu" style="">
+                                            <div class="dropdown-arrow"></div>
+                                            <a data-dropdown-key="customer" data-dropdown-value="Filter By Customer" data-dropdown-owner="#keytype" data-dropdown-display="#searchby" class="dropdown-item">Customer</a>
+                                            <a data-dropdown-key="bike" data-dropdown-value="Filter By Bike Name" data-dropdown-owner="#keytype" data-dropdown-display="#searchby" class="dropdown-item">Bike Name</a>
+                                            <a data-dropdown-key="category" data-dropdown-value="Filter By Category" data-dropdown-owner="#keytype" data-dropdown-display="#searchby" class="dropdown-item">Category</a>
+                                            <a data-dropdown-key="all" data-dropdown-value="Filter By All" data-dropdown-owner="#keytype" data-dropdown-display="#searchby" class="dropdown-item">All</a>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-box">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" style="border-radius: 0;">
+                                                <span class="fa fa-search"></span>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="keywords" placeholder="Search" style="height: auto;">
+                                        <input type="hidden" id="keytype" name="keytypes" value="all" />
+                                    </div>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="table-responsive" id="tbl0res">
                             <table class="table table-sm table-hover table-nowrap card-table" id="SortBy">
                                 <thead>
                                     <tr>
@@ -64,9 +95,9 @@
                                                 <td class="item-usage no-wrap">@Row.Hourly_Usage</td>
                                                 <td class="item-total no-wrap">@((Row.Hourly_Usage * Row.Hourly_Rate).ToString("#, ##0.00"))</td>
                                             </tr>
-                </text>
-                Ctr++;
-            }
+                                            </text>
+                                            Ctr++;
+                                        }
                                     }
                                 </tbody>
                             </table>
@@ -77,3 +108,14 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        $('a[data-dropdown-key]').on('click', function () {
+            var a = $(this).data('dropdown-display');
+            var b = $(this).data('dropdown-owner');
+            $(a).html($(this).data('dropdown-value'));
+            $(b).val($(this).data('dropdown-key'));
+        });
+    </script>
+}

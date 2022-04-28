@@ -662,3 +662,37 @@ function PopupDialog(elem) {
         }
     });
 }
+
+function OnSinlgePageSearch(Frm) {
+    var FrmLoader = $(Frm).data("form-loader");
+    var FrmDisplay = $(Frm).data("form-display");
+    if (!FrmDisplay) {
+        toastr.error("Something went wrong in your request.");
+        console.log("no display found");
+        return false;
+    }
+    $.ajax({
+        type: "POST",
+        url: $(Frm).attr("action"),
+        data: $(Frm).serialize(),
+        beforeSend: function () {
+            if (FrmLoader) { $(FrmLoader).addClass('overlay-show'); }
+        },
+        success: function (data) {
+            console.log(data.result);
+            if (data.success === true) {
+                $(FrmDisplay).empty();
+                $(FrmDisplay).append(data.result);
+            } else {
+                toastr.error("Something went wrong on your request");
+            }
+        },
+        error: function () {
+            toastr.error("Oops! Something went wrong on your request.");
+        },
+        complete: function () {
+            if (FrmLoader) { $(FrmLoader).removeClass('overlay-show'); }
+        }
+    });
+    return false;
+}
