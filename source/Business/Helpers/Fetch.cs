@@ -111,6 +111,16 @@ namespace web.urapz
             return Table.ToRentals(DT.AsEnumerable());
         }
 
+        public IEnumerable<Rental> GetRentalsByStatusWithFilter(string Status, string Where)
+        {
+            var SC = string.Format("SELECT * FROM (SELECT * FROM VW_CRM_Rentals WHERE Status = '{0}') AS SR {1}", Status, Where);
+            var DT = MyServer.ToData(string.Format("{0} ORDER BY Rental_Date DESC", SC));
+
+            if (DT == null) return new List<Rental>();
+
+            return Table.ToRentals(DT.AsEnumerable());
+        }
+
         #endregion
 
         #region " Get - Rental Info "

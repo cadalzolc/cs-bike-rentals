@@ -281,5 +281,62 @@ namespace web.urapz.bike_rentals.Areas.CMS.Controllers
 
         #endregion
 
+        #region " Search "
+
+        [HttpPost("search")]
+        public JsonResult Search(string keywords, string keytypes, string page)
+        {
+
+            if (page.ToNullString().Equals("")) return Json(new Data_Response("No reference was found"));
+
+            var K1 = keywords.ToNullString().TrimStart().TrimEnd();
+            var K2 = keytypes.ToNullString("ALL").ToUpper();
+            var K3 = "";
+            var P1 = "";
+            var P2 = K2.Equals("ALL") ? 
+                string.Format("WHERE category LIKE '%{0}%' OR bike LIKE '%{0}%' OR customer LIKE '%{0}%'", K1.Replace("'", "''")) : 
+                string.Format("WHERE {0} LIKE '%{1}%'", K2.Replace("'", ""), K1.Replace("'", "''"));
+
+            var Fch = new Fetch(MyServer);
+            var Model = new Pages();
+
+            switch (page.ToUpper())
+            {
+                case "R1": 
+                    K3 = "_SearchReservation";
+                    P1 = "P";
+                    break;
+                case "R2":
+                    K3 = "_SearchRejected";
+                    P1 = "X";
+                    break;
+                case "R3":
+                    K3 = "_SearchTrack";
+                    P1 = "L";
+                    break;
+                case "R4":
+                    K3 = "_SearchHistory";
+                    P1 = "H";
+                    break;
+                default: break;
+            }
+
+            if (K3.Equals("")) return Json(new Data_Response("No search page was found"));
+
+            Model.List_Rentals = Fch.GetRentalsByStatusWithFilter(P1, P2);
+
+            var html = Task.Run(async () => { return await InjView.RenderToString(K3, Model); }).Result;
+            var RSP = new WebResult
+            {
+                Success = true,
+                Message = "Load",
+                Result = html
+            };
+
+            return Json(RSP);
+        }
+
+        #endregion
+
     }
 }

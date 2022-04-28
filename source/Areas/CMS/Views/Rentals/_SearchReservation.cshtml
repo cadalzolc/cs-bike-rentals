@@ -1,0 +1,50 @@
+﻿@inject IViewRenderService InjView
+
+@model Pages
+
+@{
+    Layout = null;
+}
+
+<table class="table table-sm table-hover table-nowrap card-table" id="SortBy">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Rental Date</th>
+            <th>Customer</th>
+            <th>Bike</th>
+            <th>Category</th>
+            <th>Rate</th>
+            <th>Hours</th>
+            <th>Total</th>
+            <th class="text-center"></th>
+        </tr>
+    </thead>
+    <tbody class="list font-size-base">
+        @{
+            var Ctr = 1;
+            foreach (var Row in Model.List_Rentals)
+            {
+                var Stamp = Row.Rental_Date.ToDate().ToString("MMM-dd-yyyy");
+                <text>
+                    <tr>
+                        <td>@Ctr</td>
+                        <td class="item-title no-wrap">@Row.Rental_Date.ToDate().ToString("MMM-dd-yyyy").ToUpper()</td>
+                        <td class="item-rental-date no-wrap">@Row.Customer</td>
+                        <td class="item-bike no-wrap">@Row.Bike</td>
+                        <td class="item-bike no-wrap">@Row.Category</td>
+                        <td class="item-rate no-wrap">@Row.Hourly_Rate.ToString("#, ##0.00")</td>
+                        <td class="item-usage no-wrap">@Row.Hourly_Usage</td>
+                        <td class="item-total no-wrap">@((Row.Hourly_Usage * Row.Hourly_Rate).ToString("#, ##0.00"))</td>
+                        <td style="width: 120px;" class="text-right">
+                            <a class="dropdown-item" style="padding: 3px 7px;" asp-area="cms" asp-controller="rentals" asp-action="review" asp-route-key="@Row.Rental_ID.ToEncode()">
+                                <i data-feather="edit" style="height: 13px;"></i> Review
+                            </a>
+                        </td>
+                    </tr>
+                </text>
+                Ctr++;
+            }
+        }
+    </tbody>
+</table>
