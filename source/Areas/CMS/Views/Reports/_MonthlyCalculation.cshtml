@@ -1,0 +1,30 @@
+﻿@model Pages
+
+@{
+    Layout = null;
+    var Rows = Model.SalesSummary.OrderBy(s => s.Date).AsEnumerable();
+}
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 150px;">Date</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Row in Rows)
+        {
+            <tr>
+                <td>@Row.Date</td>
+                <td>@Row.Amount.ToString("#, ##0.00")</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td>@Rows.Sum(s => s.Amount).ToString("#, ##0.00")</td>
+        </tr>
+    </tfoot>
+</table>

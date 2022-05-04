@@ -696,3 +696,25 @@ function OnSinlgePageSearch(Frm) {
     });
     return false;
 }
+
+function OnSubmitSPA(Frm) {
+    var FrmDisplay = $(Frm).data("form-display");
+    if (!FrmDisplay) {
+        toastr.error("Something went wrong in your request.");
+        console.log("no display found");
+        return false;
+    }
+    $.ajax({
+        type: $(Frm).attr("method"),
+        url: $(Frm).attr("action"),
+        data: $(Frm).serialize(),
+        success: function (data) {
+            $(FrmDisplay).empty();
+            $(FrmDisplay).append(data);
+        },
+        error: function () {
+            toastr.error("Oops! Something went wrong on your request.");
+        }
+    });
+    return false;
+}

@@ -254,5 +254,25 @@ namespace web.urapz
 
         #endregion
 
+        #region " To Rental Sales Summary "
+
+        public static SalesInfo ToRentalSaleSummary(DataRow Row)
+        {
+            if (Row == null) return new SalesInfo();
+            return new SalesInfo
+            {
+                Date = Row["Rental_Date"].ToString(),
+                Amount = Row["Total"].ToDouble(),
+            };
+        }
+
+        public static IEnumerable<SalesInfo> ToRentalSalesSummary(IEnumerable<DataRow> Rows)
+        {
+            if (Rows == null || Rows.Count().Equals(0)) return new List<SalesInfo>();
+            return Rows.Select(r => ToRentalSaleSummary(r));
+        }
+
+        #endregion
+
     }
 }
