@@ -7,6 +7,20 @@ namespace web.urapz
     public class Fetch
     {
 
+        #region " Property "
+
+        private const string GetBikesSQL = "SELECT *, (Stock - Leased) AS Available FROM " +
+                                    "( " +
+                                        "SELECT B.*, " +
+                                            "Leased = (SELECT COUNT(*) AS N " +
+                                                    "FROM CRM_Rentals_Detail RD " +
+                                                        "LEFT OUTER JOIN CRM_Rentals R ON  R.ID = RD.Rental_ID " +
+                                                  "WHERE R.Bike_ID = B.ID AND R.Status = 'L') " +
+                                        "FROM VW_CRM_Bikes B " +
+	                                ") AS Bikes";
+
+        #endregion
+
         #region " Init "
 
         public Log Logger { get; set; } = new Log();
@@ -40,10 +54,10 @@ namespace web.urapz
 
         public IEnumerable<Bike> GetBikes(string Search, int Category)
         {
-
+            
             var WHR = string.Format("WHERE Name LIKE '%{0}%' OR Category LIKE '%{0}%'", Search.ToNullString());
             var AND = Category == 0 ? "" : string.Format("AND Category_ID = {0}", Category);
-            var DT = MyServer.ToData(string.Format("SELECT * FROM VW_CRM_Bikes {0} {1}", WHR, AND));
+            var DT = MyServer.ToData(string.Format("{0} {1} {2}", GetBikesSQL, WHR, AND));
 
             if (DT == null) return new List<Bike>();
 
@@ -174,6 +188,16 @@ namespace web.urapz
             if (DT.Rows.Count.Equals(0)) return new List<Rental_Sales>();
 
             return Table.ToRentalSales(DT.AsEnumerable());
+        }
+
+        public IEnumerable<SalesInfo> GetRentalSalesSummary(int Year, int Month)
+        {
+            var DT = MyServer.ToData(string.Format("SELECT Rental_Date, SUM(Total) AS Total  FROM VW_CRM_Sales WHERE YEAR(Rental_Date) = {0} AND MONTH(Rental_Date) = {1} GROUP BY Rental_Date ORDER BY Rental_Date DESC", Year, Month));
+
+            if (DT == null) return new List<SalesInfo>();
+            if (DT.Rows.Count.Equals(0)) return new List<SalesInfo>();
+
+            return Table.ToRentalSalesSummary(DT.AsEnumerable());
         }
 
         #endregion

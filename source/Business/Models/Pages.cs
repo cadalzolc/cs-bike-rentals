@@ -12,6 +12,7 @@ namespace web.urapz
         public IEnumerable<Rental> List_Rentals = new List<Rental>();
         public User_Account Info_User { get; set; } = new User_Account();
         public IEnumerable<Rental_Sales> Sales = new List<Rental_Sales>();
+        public IEnumerable<SalesSummary> SalesSummary = new List<SalesSummary>();
         public string KeyWord1 { get; set; } = "";
         public string KeyWord2 { get; set; } = "";
         public string KeyWord3 { get; set; } = "";

@@ -62,5 +62,51 @@ namespace web.urapz.bike_rentals.Areas.CMS.Controllers
 
         #endregion
 
+        #region " Monthly - Sales "
+
+        [HttpGet("monthlySales")]
+        public JsonResult MonthlySales()
+        {
+            var Get = new Fetch(MyServer);
+            var Model = new Pages();
+            var Rpt = new SalesReport();
+            var SalesInfo= Get.GetRentalSalesSummary(DateTime.Now.Year, DateTime.Now.Month).ToList();
+
+            Model.SalesSummary = Rpt.CalculateMonthlySales(SalesInfo, DateTime.Now.Year, DateTime.Now.Month).AsEnumerable();
+            Model.KeyWord1 = DateTime.Now.Month.ToString();
+            Model.KeyWord2 = DateTime.Now.Year.ToString();
+
+            var html = Task.Run(async () => { return await InjView.RenderToString("_Monthly", Model); }).Result;
+            var RSP = new WebResult
+            {
+                Success = true,
+                Message = "Load",
+                Result = html
+            };
+            return Json(RSP.Result);
+        }
+
+        [HttpPost("MonthlySales")]
+        public JsonResult MonthlySales(string Keyword1, string Keyword2)
+        {
+            var Get = new Fetch(MyServer);
+            var Model = new Pages();
+            var Rpt = new SalesReport();
+            var SalesInfo = Get.GetRentalSalesSummary(Keyword2.ToInt(), Keyword1.ToInt()).ToList();
+
+            Model.SalesSummary = Rpt.CalculateMonthlySales(SalesInfo, Keyword2.ToInt(), Keyword1.ToInt()).AsEnumerable();
+
+            var html = Task.Run(async () => { return await InjView.RenderToString("_MonthlyCalculation", Model); }).Result;
+            var RSP = new WebResult
+            {
+                Success = true,
+                Message = "Load",
+                Result = html
+            };
+            return Json(RSP.Result);
+        }
+
+        #endregion
+
     }
 }

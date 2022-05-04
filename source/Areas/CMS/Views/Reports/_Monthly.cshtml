@@ -1,0 +1,70 @@
+﻿@model Pages
+
+@{
+    Layout = null;
+    var Rows = Model.SalesSummary.OrderBy(s => s.Date).AsEnumerable();
+    var Rpt = new SalesReport();
+    var LstYear = new List<KeyValue>();
+    LstYear.Add(new KeyValue("2021", "2021"));
+    var CurYear = DateTime.Now.Year.ToString();
+
+    if (!LstYear.Exists(y => y.Key.ToString().Equals(CurYear)))
+    {
+        LstYear.Add(new KeyValue(CurYear, CurYear));
+    }
+
+}
+
+<div id="FrmLD" class="modal-dialog modal-dialog-centered" method="post" >
+    <div class="modal-content bg-lighter">
+        <div class="modal-card card small-box" style="padding: 0; margin: 0;">
+            <div class="modal-body" style="margin-bottom: 0; padding: 10px;">
+                <div class="row">
+                    <div class="col">
+                        <h6 class="text-uppercase text-muted mb-3">Monthly Sales</h6>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="close" onclick="ModaliaClose('#MdlForm')">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                </div>
+                <hr class="my-2">
+                <div class="card">
+                    <div class="card-header">
+                        <form method="post" asp-area="cms" asp-controller="reports" asp-action="MonthlySales" onsubmit="return OnSubmitSPA(this);" data-form-display="#slsReports">
+                            @Html.DropDownListFor(m => m.KeyWord1, new SelectList(Rpt.Months, "Key", "Value"), new { @class = "select", @style = "padding: 5px; border: 1px solid #ddd;" })
+                            @Html.DropDownListFor(m => m.KeyWord2, new SelectList(LstYear.AsEnumerable(), "Key", "Value"), new { @class = "select", @style = "padding: 5px; border: 1px solid #ddd;" })
+                            <button class="btn btn-primary btn-sm" style="padding: 5px; margin-top: -3px;">SUBMIT</button>
+                        </form>
+                    </div>
+                    <div class="card-body" id="slsReports">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 150px;">Date</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var Row in Rows)
+                                {
+                                    <tr>
+                                        <td>@Row.Date</td>
+                                        <td>@Row.Amount.ToString("#, ##0.00")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td>@Rows.Sum(s => s.Amount).ToString("#, ##0.00")</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
