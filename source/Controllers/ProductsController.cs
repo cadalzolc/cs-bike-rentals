@@ -52,14 +52,13 @@ namespace web.urapz.bike_rentals.Controllers
         #region " Search "
 
         [HttpPost]
-        public IActionResult Search(string keywords, string keyrefs)
+        public IActionResult Search(string keyrefs)
         {
             var Svr = new Fetch(MyServer);
             var Model = new Pages
             {
-                KeyWord1 = keywords.ToNullString(),
                 KeyWord2 = keyrefs.ToNullString(),
-                List_Bikes = Svr.GetBikes(keywords.ToNullString().Replace("'", "''"), keyrefs.ToInt())
+                List_Bikes = Svr.GetBikesByCategoryID(keyrefs.ToInt())
             };
             return View(Model);
         }

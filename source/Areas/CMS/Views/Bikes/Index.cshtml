@@ -44,6 +44,9 @@
                                                     <th style="width: 120px;"></th>
                                                     <th>Name</th>
                                                     <th>Rate</th>
+                                                    <th>Stock</th>
+                                                    <th>Available</th>
+                                                    <th>Rented</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -60,6 +63,9 @@
                                                             </td>
                                                             <td class="item-title no-wrap">@Row.Name</td>
                                                             <td class="item-rate no-wrap">@Row.Hourly_Rate.ToString("#, ##0.00")</td>
+                                                            <td>@Row.Stock</td>
+                                                            <td>@Row.Available</td>
+                                                            <td>@Row.Leased</td>
                                                             <td></td>
                                                         </tr>
                                                         </text>

@@ -17,6 +17,8 @@ namespace web.urapz
         public string Size { get; set; } = "";
         public string Brakes { get; set; } = "";
         public string Wieght { get; set; } = "";
+        public int Available { get; set; } = 0;
+        public int Leased { get; set; } = 0;
     }
 
     public class Bike_Category : IDName {}
