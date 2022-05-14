@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace web.urapz
 {
@@ -45,19 +46,19 @@ namespace web.urapz
                 WHR = string.Format("WHERE Name LIKE '%{0}%' OR Category LIKE '%{0}%'", Search);
             }
            
-            var DT = MyServer.ToData(string.Format("SELECT TOP {0} * FROM VW_CRM_Bikes {1}", Top, WHR));
+            var DT = MyServer.ToData(string.Format("{0} {1}", GetBikesSQL, WHR));
 
             if (DT == null) return new List<Bike>();
 
-            return Table.ToBikes(DT.AsEnumerable());
+            IEnumerable<Bike> Recs = Table.ToBikes(DT.AsEnumerable());
+
+            return Recs.Take(Top);
         }
 
-        public IEnumerable<Bike> GetBikes(string Search, int Category)
+        public IEnumerable<Bike> GetBikesByCategoryID(int Category)
         {
-            
-            var WHR = string.Format("WHERE Name LIKE '%{0}%' OR Category LIKE '%{0}%'", Search.ToNullString());
-            var AND = Category == 0 ? "" : string.Format("AND Category_ID = {0}", Category);
-            var DT = MyServer.ToData(string.Format("{0} {1} {2}", GetBikesSQL, WHR, AND));
+            var WHR = Category == 0 ? "" : string.Format("WHERE Category_ID = {0}", Category);
+            var DT = MyServer.ToData(string.Format("{0} {1}", GetBikesSQL, WHR));
 
             if (DT == null) return new List<Bike>();
 

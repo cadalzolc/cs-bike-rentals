@@ -77,7 +77,9 @@ namespace web.urapz
                 Color = Row["Color"].ToNullString(""),
                 Size = Row["Size"].ToNullString(""),
                 Brakes = Row["Brakes"].ToNullString(""),
-                Wieght = Row["Wieght"].ToNullString("")      
+                Wieght = Row["Wieght"].ToNullString(""),
+                Available = Row["Available"].ToInt(),
+                Leased = Row["Leased"].ToInt()
             };
         }
 
