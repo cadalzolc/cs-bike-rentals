@@ -40,8 +40,11 @@ namespace web.urapz
             var MonthID = Month.ToString();
             for(var d = 1; d <= LastDay; d++)
             {
-                var strDate = string.Format("{1}/{2}/{0}", Year, Month, d);
-                var newDate = Convert.ToDateTime(strDate);
+                 var strDate = string.Format("{1}/{2}/{0}", Year, Month, d);
+                CultureInfo provider = new CultureInfo("en-US");
+                DateTime newDate = DateTime.Parse(strDate, provider);
+               
+                //var newDate = Convert.ToDateTime(strDate);
                 Summary.Add(new SalesSummary() 
                 { 
                     Date = newDate.ToString("MMM dd, yyyy"), 

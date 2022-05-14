@@ -72,7 +72,12 @@ namespace web.urapz
                 },
                 Hourly_Rate = Row["Hourly_Rate"].ToDouble(),
                 Stock = Row["Stock"].ToInt(),
-                Photo = Row["Photo"].ToNullString("default.jpg")       
+                Photo = Row["Photo"].ToNullString("default.jpg"),
+                Frame = Row["Frame"].ToNullString(""),
+                Color = Row["Color"].ToNullString(""),
+                Size = Row["Size"].ToNullString(""),
+                Brakes = Row["Brakes"].ToNullString(""),
+                Wieght = Row["Wieght"].ToNullString("")      
             };
         }
 
