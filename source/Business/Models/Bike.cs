@@ -12,6 +12,11 @@ namespace web.urapz
         public string Photo { get; set; } = "";
         public double Hourly_Rate { get; set; } = 0;
         public int Stock { get; set; } = 0;
+        public string Frame { get; set; } = "";
+        public string Color { get; set; } = "";
+        public string Size { get; set; } = "";
+        public string Brakes { get; set; } = "";
+        public string Wieght { get; set; } = "";
     }
 
     public class Bike_Category : IDName {}

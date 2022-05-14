@@ -18,14 +18,7 @@
             <div class="container mt-4 mt-sm-3 mt-lg-n3 pb-1 mb-md-4">
                 <form class="form-group form-group-light d-block" asp-area="" asp-controller="products" asp-action="search">
                     <div class="row g-0 ms-lg-n2">
-                        <div class="col-lg-7">
-                            <div class="input-group border-end-lg border-light">
-                                <span class="input-group-text text-muted ps-2 ps-sm-3"><i class="fi-search"></i></span>
-                                <input class="form-control" type="text" name="keywords" placeholder="Keywords..." value="@Model.KeyWord1">
-                            </div>
-                        </div>
-                        <hr class="hr-light d-lg-none my-2">
-                        <div class="col-lg-3 col-md-3 col-sm-6">
+                        <div class="col-lg-10">
                             <div class="dropdown border-end-sm border-light" data-bs-toggle="select">
                                 <button class="btn btn-link dropdown-toggle ps-2 ps-sm-3" type="button" data-bs-toggle="dropdown">
                                     <i class="fi-car fs-lg me-2"></i>
@@ -33,11 +26,10 @@
                                 </button>
                                 <input type="hidden" id="keyrefs" name="keyrefs" value="@Model.KeyWord2">
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a data-model-id="1" data-model-name="Road Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Road Bikes</span></a></li>
+                                    <li><a data-model-id="1" data-model-name="Road Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Road Bikes</span></a></li> 
                                     <li><a data-model-id="2" data-model-name="Mountain Bikes " class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Mountain Bikes </span></a></li>
                                     <li><a data-model-id="3" data-model-name="Gravel/Adventure Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Gravel/Adventure Bikes</span></a></li>
-                                    <li><a data-model-id="4" data-model-name="Utility Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Utility Bikes </span></a></li>
-                                    <li><a data-model-id="5" data-model-name="Comfort/Fitness Bikes" class="dropdown-item" style="cursor: pointer;"><span class="dropdown-item-label">Comfort/Fitness Bikes</span></a></li>
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -49,11 +41,11 @@
                 </form>
             </div>
         </div>
-        <h2 class="h3 text-light mb-3 mb-sm-2">Search Results</h2>
+        <h2 class="h3 text-light mb-3 mb-sm-2">Search Results @Model.KeyWord1</h2>
         <div class="row justify-content-center pt-4">
             @foreach (var Row in Model.List_Bikes)
             {
-                <div class="col-lg-4">
+                <div class="col-lg-4" style="margin-bottom: 15px;">
                     <div class="card card-light card-hover h-100">
                         <div class="card-img-top card-img-hover bg-light py-1 px-1">
                             <div style=" float: right; color: #fff; border: 1px solid #fd5631; padding: 5px; background: #fd5631;">
@@ -65,7 +57,15 @@
                         <div class="card-body" style="display: flex;">
                             <div class="col">
                                 <h3 class="h6 mb-1"><a class="nav-link-light" href="#">@Row.Category.Name</a></h3>
-                                <div class="text-primary fw-bold mb-1">@Row.Hourly_Rate.ToString("#, ##0.00")/Hour</div>
+                                <div class="text-primary fw-bold mb-1">BIKE SPECIFICATIONS</div>
+                                <div class="text-primary fw-bold mb-1">Price: @Row.Hourly_Rate.ToString("#, ##0.00")/Hour</div>
+                                 <div class="text-primary fw-bold mb-1">Color: @Row.Color</div>
+                                 <div class="text-primary fw-bold mb-1">Weight: @Row.Wieght kg</div>
+                                 <div class="text-primary fw-bold sm-3">Size: @Row.Size</div>
+                                 <div class="text-primary fw-bold mb-1">Brake: @Row.Brakes</div>
+                                 <div class="text-primary fw-bold mb-1">Frame: @Row.Frame</div>
+                            
+                                  
                             </div>
                             <div class="col-auto">
                                 <a class="btn btn-primary" asp-area="" asp-controller="Products" asp-action="Info"

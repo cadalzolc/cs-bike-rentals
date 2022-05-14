@@ -63,8 +63,6 @@ namespace web.urapz.bike_rentals.Areas.CMS.Controllers
         #endregion
 
         #region " Monthly - Sales "
-
-        [HttpGet("monthlySales")]
         public JsonResult MonthlySales()
         {
             var Get = new Fetch(MyServer);
@@ -86,7 +84,7 @@ namespace web.urapz.bike_rentals.Areas.CMS.Controllers
             return Json(RSP.Result);
         }
 
-        [HttpPost("MonthlySales")]
+        [HttpPost]
         public JsonResult MonthlySales(string Keyword1, string Keyword2)
         {
             var Get = new Fetch(MyServer);
